@@ -95,6 +95,7 @@ const Benefits = () => {
               height={512}
               priority
               quality={100}
+              className="border-4 lg:border-l-0 border-dark rounded-xl lg:rounded-l-none lg:rounded-r-xl"
             />
           </div>
 
