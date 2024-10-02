@@ -19,7 +19,7 @@ const Hero = () => {
         {/* Hero content */}
         <div className=" mt-[5vh] grid items-center justify-items-center gap-16 sm:gap-20 px-5 sm:px-10 lg:px-16 py-10 md:py-24">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="h1-bold">
+            <h1 className="h1-bold flex items-center justify-center">
               Cirql: <FlipWords className="text-center" words={words} />{" "}
             </h1>
             <p className="text-lg sm:text-xl mt-4 sm:mt-6 ">
