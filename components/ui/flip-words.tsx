@@ -14,19 +14,31 @@ export const FlipWords = ({
 }) => {
   const [currentWord, setCurrentWord] = useState(words[0]);
   const [isAnimating, setIsAnimating] = useState<boolean>(false);
+  const [hasStarted, setHasStarted] = useState<boolean>(false);
 
   const startAnimation = useCallback(() => {
-    const word = words[words.indexOf(currentWord) + 1] || words[0];
-    setCurrentWord(word);
+    const currentIndex = words.indexOf(currentWord);
+    const nextWord = words[(currentIndex + 1) % words.length];
+    setCurrentWord(nextWord);
     setIsAnimating(true);
   }, [currentWord, words]);
 
   useEffect(() => {
-    if (!isAnimating)
-      setTimeout(() => {
+    if (!hasStarted) {
+      const timer = setTimeout(() => {
+        setHasStarted(true);
         startAnimation();
       }, duration);
-  }, [isAnimating, duration, startAnimation]);
+      return () => clearTimeout(timer);
+    }
+
+    if (!isAnimating && hasStarted) {
+      const timer = setTimeout(() => {
+        startAnimation();
+      }, duration);
+      return () => clearTimeout(timer);
+    }
+  }, [isAnimating, duration, startAnimation, hasStarted]);
 
   return (
     <div className="relative inline-block overflow-hidden">
@@ -36,10 +48,7 @@ export const FlipWords = ({
         }}
       >
         <motion.div
-          initial={{
-            opacity: 0,
-            y: 10,
-          }}
+          initial={hasStarted ? { opacity: 0, y: 10 } : { opacity: 1, y: 0 }}
           animate={{
             opacity: 1,
             y: 0,
@@ -64,10 +73,14 @@ export const FlipWords = ({
           {currentWord.split(" ").map((word, wordIndex) => (
             <motion.span
               key={word + wordIndex}
-              initial={{ opacity: 0, y: 10, filter: "blur(4px)" }}
+              initial={
+                hasStarted
+                  ? { opacity: 0, y: 10, filter: "blur(4px)" }
+                  : { opacity: 1, y: 0, filter: "blur(0px)" }
+              }
               animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               transition={{
-                delay: wordIndex * 0.3,
+                delay: hasStarted ? wordIndex * 0.3 : 0,
                 duration: 0.3,
               }}
               className="inline-block whitespace-nowrap"
@@ -75,10 +88,16 @@ export const FlipWords = ({
               {word.split("").map((letter, letterIndex) => (
                 <motion.span
                   key={word + letterIndex}
-                  initial={{ opacity: 0, y: 10, filter: "blur(4px)" }}
+                  initial={
+                    hasStarted
+                      ? { opacity: 0, y: 10, filter: "blur(4px)" }
+                      : { opacity: 1, y: 0, filter: "blur(0px)" }
+                  }
                   animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                   transition={{
-                    delay: wordIndex * 0.3 + letterIndex * 0.05,
+                    delay: hasStarted
+                      ? wordIndex * 0.3 + letterIndex * 0.05
+                      : 0,
                     duration: 0.2,
                   }}
                   className="inline-block"
