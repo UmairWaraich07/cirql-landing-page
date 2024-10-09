@@ -16,7 +16,7 @@ const Logo = ({ width = 120, height = 32, footer = false }: Props) => {
         alt="Cirql AI"
         width={width}
         height={height}
-        className=""
+        className="h-auto"
         priority
       />
     </Link>

@@ -15,11 +15,11 @@ const Hero = () => {
   ];
   return (
     <section className=" bg-secondary">
-      <div className=" bg-grid bg-top bg-cover bg-no-repeat   max-w-[1440px] mx-auto ">
+      <div className=" bg-grid bg-top bg-cover bg-no-repeat  max-w-[1440px] mx-auto ">
         <Header />
         {/* Hero content */}
         <div className=" mt-[5vh] grid items-center justify-items-center gap-16 sm:gap-20 py-16 md:py-24">
-          <div className="max-w-4xl mx-auto text-center px-5 sm:px-10 lg:px-16">
+          <div className="max-w-4xl mx-auto text-center px-5 sm:px-10 lg:px-0 ">
             <h1 className="h1-bold lg:flex lg:items-center lg:justify-center">
               Cirql: <br className="lg:hidden" />{" "}
               <FlipWords className="text-center" words={words} />{" "}
@@ -58,7 +58,9 @@ const Hero = () => {
           </div>
 
           {/* Try Cirql Demo */}
-          <TryCirql />
+          <div className="w-full md:px-10 lg:px-16">
+            <TryCirql />
+          </div>
         </div>
       </div>
     </section>

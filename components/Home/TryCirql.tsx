@@ -43,7 +43,7 @@ export default function TryCirql() {
   });
 
   const [isLoading, setIsLoading] = useState(false);
-  const [isResponseReceived, setIsResponseReceived] = useState(true);
+  const [isResponseReceived, setIsResponseReceived] = useState(false);
   const [isEditable, setIsEditable] = useState(false);
   const [useEmailTemplate, setUseEmailTemplate] = useState(false);
 
@@ -111,7 +111,10 @@ export default function TryCirql() {
   };
 
   return (
-    <div className=" rounded-3xl sm:rounded-2xl max-w-5xl mx-auto w-full border-x-0 border-[8px] sm:border-[10px] border-dark shadow-sm bg-[#F9FAFB] overflow-hidden">
+    <div
+      className=" rounded-3xl max-w-5xl mx-auto w-full border-x-0 border-[8px] md:border-[10px] border-dark shadow-sm
+     bg-[#F9FAFB] overflow-hidden  "
+    >
       <Toaster position="top-center" />
       <div className=" mt-3 bg-primary/10 border-2 w-fit mx-auto border-primary rounded-full flex items-center justify-center py-1 px-4 sm:px-8">
         <Image
