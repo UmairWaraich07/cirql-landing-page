@@ -82,4 +82,15 @@
   .h4-bold {
     @apply font-bold text-[22px] leading-[130%] text-dark;
   }
+
+  .no-focus {
+    @apply focus-visible:ring-0 focus-visible:ring-transparent focus-visible:ring-offset-0 !important;
+  }
+
+  .try-criql-text-gradient {
+    background: linear-gradient(90deg, #7f56d9 0%, #e02b1e 135.79%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
 }

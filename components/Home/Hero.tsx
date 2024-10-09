@@ -4,6 +4,7 @@ import { Button } from "../ui/button";
 import Image from "next/image";
 import { FlipWords } from "../ui/flip-words";
 import Header from "../shared/Header";
+import TryCirql from "./TryCirql";
 
 const Hero = () => {
   const words = [
@@ -56,18 +57,8 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* Hero Image */}
-          <div className="">
-            <Image
-              src="/images/cirql-dashboard.png"
-              alt="cirql dashboard"
-              width={700}
-              height={500}
-              className="w-full h-full object-cover"
-              priority
-              quality={100}
-            />
-          </div>
+          {/* Try Cirql Demo */}
+          <TryCirql />
         </div>
       </div>
     </section>

@@ -7,6 +7,7 @@ import Steps from "./Steps";
 import SupportCTA from "./SupportCTA";
 import Testimonials from "./Testimonials";
 import WhyCirql from "./WhyCirql";
+import TryCirql from "./TryCirql";
 
 export {
   Hero,
@@ -18,4 +19,5 @@ export {
   SupportCTA,
   Testimonials,
   WhyCirql,
+  TryCirql,
 };

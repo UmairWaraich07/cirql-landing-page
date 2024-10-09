@@ -6,7 +6,7 @@ const Testimonials = () => {
     <section className="bg-primary-light  ">
       <div className="py-10 md:py-24 max-w-[1440px] mx-auto px-5 sm:px-10 lg:px-16">
         <div className="flex items-center flex-col justify-center text-center">
-          <h2 className="text-dark text-2xl sm:text-3xl font-medium">
+          <h2 className="text-dark text-xl sm:text-3xl font-medium">
             I get so many emails - the categorization really helps me, and now
             all those spam emails are gone! Plus, I had someone pay for a
             meeting with me and that covered the cost of this for the whole year
