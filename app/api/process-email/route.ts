@@ -59,7 +59,7 @@ export async function POST(request: Request) {
 
     // Generate response using OpenAI
     const chatCompletion = await openai.chat.completions.create({
-      model: "gpt-4-turbo-preview",
+      model: "gpt-4o-mini",
       messages: [
         {
           role: "system",

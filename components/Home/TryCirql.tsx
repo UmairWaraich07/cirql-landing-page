@@ -43,7 +43,7 @@ export default function TryCirql() {
   });
 
   const [isLoading, setIsLoading] = useState(false);
-  const [isResponseReceived, setIsResponseReceived] = useState(false);
+  const [isResponseReceived, setIsResponseReceived] = useState(true);
   const [isEditable, setIsEditable] = useState(false);
   const [useEmailTemplate, setUseEmailTemplate] = useState(false);
 
@@ -111,15 +111,15 @@ export default function TryCirql() {
   };
 
   return (
-    <div className="rounded-2xl w-full border-[8px] sm:border-[10px] border-dark shadow-sm bg-[#F9FAFB] overflow-hidden">
+    <div className=" rounded-3xl sm:rounded-2xl max-w-5xl mx-auto w-full border-x-0 border-[8px] sm:border-[10px] border-dark shadow-sm bg-[#F9FAFB] overflow-hidden">
       <Toaster position="top-center" />
-      <div className="mt-3 bg-primary/10 border-2 w-fit mx-auto border-primary rounded-full flex items-center justify-center py-1 px-5 sm:px-8">
+      <div className=" mt-3 bg-primary/10 border-2 w-fit mx-auto border-primary rounded-full flex items-center justify-center py-1 px-4 sm:px-8">
         <Image
           src="/images/logo.png"
           alt="Cirql AI"
           width={80}
           height={80}
-          className="h-auto max-sm:w-16 "
+          className="h-auto max-sm:w-14 "
           priority
         />
       </div>
@@ -139,7 +139,7 @@ export default function TryCirql() {
             onSubmit={form.handleSubmit((values, event) =>
               onSubmit(values, event as React.FormEvent)
             )}
-            className="space-y-5 sm:space-y-8 mt-12 sm:mt-16 w-full"
+            className="space-y-5 sm:space-y-8 mt-16 w-full"
           >
             <FormField
               control={form.control}
@@ -156,7 +156,7 @@ export default function TryCirql() {
                             ${
                               isEditable
                                 ? "border-primary border-2 bg-primary/5"
-                                : "border-primary/20"
+                                : "border-primary/30"
                             }
                                 ${
                                   isResponseReceived &&
@@ -229,11 +229,11 @@ export default function TryCirql() {
                   <FormMessage />
 
                   <div
-                    className={`absolute rounded-t-md border border-b-0 border-primary ${
+                    className={`absolute rounded-t-md border border-b-0 ${
                       isResponseReceived
                         ? "bg-[#DCFAE6] border-[#079455]"
                         : "bg-primary/10 border-primary"
-                    }  py-1 px-4 -top-9 left-2 sm:left-12`}
+                    }  py-1 px-4 -top-9 left-4 sm:left-12`}
                   >
                     <p
                       className={`font-medium ${
@@ -255,7 +255,7 @@ export default function TryCirql() {
                     <FormItem>
                       <FormControl>
                         <Input
-                          className="no-focus w-full h-12 rounded-md border border-primary/20 px-4 sm:px-6  bg-white shadow-sm"
+                          className="no-focus w-full h-12 rounded-md border border-primary/30 px-4 sm:px-6  bg-white shadow-sm"
                           {...field}
                           type="email"
                           id="senderEmail"
