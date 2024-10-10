@@ -7,7 +7,7 @@ const redis = new Redis({
 });
 
 const RATE_LIMIT_REQUESTS = 3; // Number of requests allowed
-const RATE_LIMIT_WINDOW = 60; // Time window in seconds (1 hour)
+const RATE_LIMIT_WINDOW = 60 * 60; // Time window in seconds (1 hour)
 
 export async function rateLimit(request: NextRequest) {
   // Use a combination of IP and User-Agent as a unique identifier
