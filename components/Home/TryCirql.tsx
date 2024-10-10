@@ -66,7 +66,12 @@ export default function TryCirql() {
           },
           body: JSON.stringify({ coldEmail, senderEmail }),
         }).then(async (res) => {
+          if (res.status === 429) {
+            throw new Error("Rate limit exceeded. Please try again later.");
+          }
+
           const data = await res.json();
+
           if (data.success) {
             form.setValue("coldEmail", data.response);
             setIsResponseReceived(true);
@@ -169,7 +174,10 @@ export default function TryCirql() {
                           {...field}
                           id="coldEmail"
                           placeholder="Cold Email to test the Cirql"
-                          readOnly={!isEditable && !isResponseReceived}
+                          readOnly={
+                            (!isEditable && !isResponseReceived) ||
+                            (!isEditable && isResponseReceived)
+                          }
                         />
                         {isEditable && (
                           <div className="absolute inset-0 pointer-events-none border-2 border-primary rounded-xl"></div>

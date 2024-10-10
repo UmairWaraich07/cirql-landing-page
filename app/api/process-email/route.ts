@@ -1,7 +1,8 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import OpenAI from "openai";
 import nodemailer from "nodemailer";
 import Airtable from "airtable";
+import { rateLimit } from "@/lib/rateLimit";
 
 // OpenAI configuration
 const openai = new OpenAI({
@@ -53,8 +54,23 @@ async function sendEmailAndAddLead(
   }
 }
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   try {
+    // Apply rate limiting
+    const rateLimitResult = await rateLimit(request);
+
+    // Check if rateLimitResult is a Response object (indicating rate limit exceeded)
+    if (rateLimitResult instanceof Response) {
+      // Extract headers from the rate limit response
+      const headers = new Headers(rateLimitResult.headers);
+
+      // Return the simplified error response
+      return NextResponse.json(
+        { error: "Rate limit exceeded" },
+        { status: 429, headers }
+      );
+    }
+
     const { coldEmail, senderEmail } = await request.json();
 
     // Generate response using OpenAI
